@@ -1,8 +1,6 @@
-# importar funções da API
+# bibliotecas
 import apiFunctions as af 
-
-# bibliotecas da API
-from flask import Flask, jsonify
+from flask import Flask
 
 # inicia a instância do Flask
 app= Flask(__name__)
@@ -16,22 +14,8 @@ def homepage():
 
 # retorna todos os jobs
 @app.route('/alljobs')
-# retorna todos os jobs
-def returnAllJobs():
-    jobs= []
-    for item in af.returnAllJobs():
-        # add item a lista
-        jobs.append(
-            {
-                "ID": item[0],
-                "Empresa": item[1],
-                "Localizacao": item[2],
-                "Emprego": item[3]
-            }
-        )
-    # return jobs
-    return jsonify(jobs)
-
-
+def retornaJsonTodosJobs():
+    return af.retornaJsonTodosJobs()
+    
 # roda a API
 app.run(host='0.0.0.0')
